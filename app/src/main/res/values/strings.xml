@@ -8,6 +8,7 @@
     <string name="title_activity_option">Option</string>
     <string name="saved_high_score">highScore</string>
     <string name="current_score">newScore</string>
+    <string name="sound_enabled">soundEnabled</string>
     <string name="title_activity_final_score">FinalScore</string>
     <string name="title_activity_pause">Pause</string>
 </resources>

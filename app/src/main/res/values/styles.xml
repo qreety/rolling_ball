@@ -1,22 +1,21 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
     </style>
 
-    <style name="NoActionBar" parent="@android:style/Theme.Holo.Light">
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
+    <style name="NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
     </style>
 
-    <style name="HalfScreen" parent="android:style/Theme.Dialog">
+    <style name="HalfScreen" parent="Theme.AppCompat.Dialog">
         <item name="android:windowBackground">@drawable/background</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowFullscreen">false</item>
     </style>
 
 
