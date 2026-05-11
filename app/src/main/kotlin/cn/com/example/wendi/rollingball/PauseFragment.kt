@@ -10,11 +10,6 @@ import android.widget.Button
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
 
-/**
- * Pause dialog fragment that appears when the game is paused.
- * Communicates with the host activity via Fragment Result API.
- * Directly accesses SoundManager from the host activity as the source of truth.
- */
 class PauseFragment : DialogFragment() {
 
     companion object {
@@ -45,10 +40,7 @@ class PauseFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val soundManager = soundManager ?: return
-        
-        /**
-         * change the sound option
-         */
+
         val button = view.findViewById<Button>(R.id.s_btn)
         updateSoundButton(button, soundManager.isSoundEnabled())
         
@@ -59,27 +51,18 @@ class PauseFragment : DialogFragment() {
             updateSoundButton(button, newSoundState)
         }
 
-        /**
-         * Start a new game
-         */
         val button1 = view.findViewById<Button>(R.id.new_btn)
         button1.setOnClickListener {
             activity?.vibrateInGame(VibrationType.CLICK)
             sendResult(RESTART)
         }
 
-        /**
-         * Continue current game
-         */
         val button2 = view.findViewById<Button>(R.id.back_btn)
         button2.setOnClickListener {
             activity?.vibrateInGame(VibrationType.CLICK)
             sendResult(CONTINUE)
         }
 
-        /**
-         * End current game and back to main menu
-         */
         val button3 = view.findViewById<Button>(R.id.end_btn)
         button3.setOnClickListener {
             activity?.vibrateInGame(VibrationType.CLICK)
@@ -89,16 +72,13 @@ class PauseFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return super.onCreateDialog(savedInstanceState).apply {
-            // Allow dismissing by touching outside
             setCanceledOnTouchOutside(true)
-            // Set the background to match the original activity
             window?.setBackgroundDrawableResource(R.drawable.background)
         }
     }
 
     override fun onCancel(dialog: DialogInterface) {
         super.onCancel(dialog)
-        // Treat cancel (back press or touch outside) as continue
         sendResult(CONTINUE)
     }
 

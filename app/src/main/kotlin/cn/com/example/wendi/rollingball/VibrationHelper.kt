@@ -6,10 +6,6 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.VibratorManager
 
-/**
- * Helper class for handling device vibration with backward compatibility.
- */
-
 enum class VibrationType {
     CLICK,
     STAR,

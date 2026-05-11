@@ -12,11 +12,6 @@ import androidx.core.content.edit
 
 class Option : AppCompatActivity() {
 
-    /**
-     * onCreate method
-     * set the buttons
-     * @param savedInstanceState
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_option)
@@ -35,9 +30,6 @@ class Option : AppCompatActivity() {
             finish()
         }
 
-        /**
-         * user can clear high score record here
-         */
         val cr = findViewById<Button>(R.id.del)
         cr.setOnClickListener {
             vibrateInGame(VibrationType.CLICK)

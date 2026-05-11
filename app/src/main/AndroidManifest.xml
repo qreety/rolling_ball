@@ -21,7 +21,8 @@
         </activity>
         <activity
             android:name=".SurfaceViewActivity"
-            android:label="@string/title_activity_surface_view" >
+            android:label="@string/title_activity_surface_view"
+            android:screenOrientation="landscape">
         </activity>
         <activity
             android:name=".HowTo"
@@ -34,7 +35,8 @@
         <activity
             android:name=".FinalScore"
             android:label="@string/title_activity_final_score"
-            android:theme="@style/HalfScreen">
+            android:theme="@style/HalfScreen"
+            android:screenOrientation="landscape">
         </activity>
     </application>
 </manifest>

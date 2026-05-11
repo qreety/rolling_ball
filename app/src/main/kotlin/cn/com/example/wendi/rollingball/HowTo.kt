@@ -11,11 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 
 class HowTo : AppCompatActivity() {
 
-    /**
-     * onCreate
-     * shows the tutorial texts and back button
-     * @param savedInstanceState
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_how_to)

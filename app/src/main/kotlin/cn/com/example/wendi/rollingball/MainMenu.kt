@@ -11,12 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainMenu : AppCompatActivity() {
 
-    /**
-     * onCreate method
-     * set up three buttons
-     * get and show the highscore
-     * @param savedInstanceState
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
