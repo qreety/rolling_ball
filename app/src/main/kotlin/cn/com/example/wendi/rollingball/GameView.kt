@@ -1,11 +1,12 @@
 package cn.com.example.wendi.rollingball
 
 import android.content.Context
-import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Handler
 import android.os.Looper
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import androidx.core.content.edit
 
 class GameView : SurfaceView, SurfaceHolder.Callback, GameEngineListener {
 
@@ -95,8 +96,19 @@ class GameView : SurfaceView, SurfaceHolder.Callback, GameEngineListener {
     override fun onGameOver() {
         // Post to main thread since this is called from the game engine thread
         mainHandler.post {
-            val intent = Intent(context, FinalScore::class.java)
-            context.startActivity(intent)
+            val sharedPref = context.getSharedPreferences("Scores", Context.MODE_PRIVATE)
+            val highScore = sharedPref.getInt(context.getString(R.string.saved_high_score), 0)
+            val currentScore = state.score
+            
+            val isNewHighScore = currentScore > highScore
+            if (isNewHighScore) {
+                sharedPref.edit {
+                    putInt(context.getString(R.string.saved_high_score), currentScore)
+                }
+            }
+            
+            // Show FinalScoreFragment instead of starting FinalScore Activity
+            (context as? SurfaceViewActivity)?.showFinalScore(currentScore, highScore, isNewHighScore)
         }
     }
 

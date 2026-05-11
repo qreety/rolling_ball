@@ -43,6 +43,20 @@ class SurfaceViewActivity : AppCompatActivity() {
                 }
             }
         }
+
+        supportFragmentManager.setFragmentResultListener(
+            FinalScoreFragment.REQUEST_KEY,
+            this
+        ) { _, result ->
+            when (result.getInt(FinalScoreFragment.RESULT_CODE)) {
+                FinalScoreFragment.RESTART -> {
+                    gv.restart()
+                }
+                FinalScoreFragment.END_GAME -> {
+                    finish()
+                }
+            }
+        }
     }
 
     override fun onPause() {
@@ -75,5 +89,10 @@ class SurfaceViewActivity : AppCompatActivity() {
         gv.kill()
         soundManager.release()
         super.onStop()
+    }
+
+    fun showFinalScore(score: Int, highScore: Int, isNewHighScore: Boolean) {
+        val finalScoreFragment = FinalScoreFragment.newInstance(score, highScore, isNewHighScore)
+        finalScoreFragment.show(supportFragmentManager, "final_score_dialog")
     }
 }
