@@ -83,6 +83,13 @@ class GameView : SurfaceView, SurfaceHolder.Callback, GameEngineListener {
 
     fun restart() {
         state.restart()
+        // If the game thread has stopped (e.g., after game over), restart it
+        if (gameThread == null || !gameThread!!.isAlive) {
+            state.run = true
+            gameEngine = GameEngine(holder, state, renderer, objectManager, soundManager, this)
+            gameThread = Thread(gameEngine)
+            gameThread?.start()
+        }
     }
 
     fun kill() {

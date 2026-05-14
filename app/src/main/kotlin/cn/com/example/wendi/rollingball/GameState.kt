@@ -33,6 +33,7 @@ class GameState {
 
     fun restart() {
         isGameRunning = true
+        run = true
         ballX = 60f
         ballY = 200f
         score = 0

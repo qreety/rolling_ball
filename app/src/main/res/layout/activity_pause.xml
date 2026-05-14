@@ -33,11 +33,32 @@
         android:background="@drawable/end_btn"
         android:layout_marginBottom="8dp"/>
 
-    <Button
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/s_btn"
-        android:layout_gravity="center_horizontal"
-        android:background="@drawable/s_off"/>
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:id="@+id/s_btn"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/icon_sound_off"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/sound"/>
+
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:id="@+id/v_btn"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/icon_vibration_off"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/vibration"/>
+    </LinearLayout>
 
 </LinearLayout>

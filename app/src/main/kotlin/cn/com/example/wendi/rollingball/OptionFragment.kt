@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
@@ -40,6 +41,26 @@ class OptionFragment : Fragment() {
         val face = Typeface.createFromAsset(activity.assets, "fonts/Chalkduster.ttf")
         tv.typeface = face
 
+        // Sound toggle button
+        val soundButton = view.findViewById<ImageButton>(R.id.sound_btn)
+        updateSoundButton(soundButton, activity.isSoundEnabled())
+        soundButton.setOnClickListener {
+            activity.vibrateInGame(VibrationType.CLICK)
+            val newSoundState = !activity.isSoundEnabled()
+            activity.setSoundEnabled(newSoundState)
+            updateSoundButton(soundButton, newSoundState)
+        }
+
+        // Vibration toggle button
+        val vibrationButton = view.findViewById<ImageButton>(R.id.vibration_btn)
+        updateVibrationButton(vibrationButton, activity.isVibrationEnabled())
+        vibrationButton.setOnClickListener {
+            activity.vibrateInGame(VibrationType.CLICK)
+            val newVibrationState = !activity.isVibrationEnabled()
+            activity.setVibrationEnabled(newVibrationState)
+            updateVibrationButton(vibrationButton, newVibrationState)
+        }
+
         val bk = view.findViewById<Button>(R.id.bck)
         bk.setOnClickListener {
             activity.vibrateInGame(VibrationType.CLICK)
@@ -54,6 +75,22 @@ class OptionFragment : Fragment() {
             }
             tv.text = "0"
             tv.typeface = face
+        }
+    }
+
+    private fun updateSoundButton(button: ImageButton, isSoundEnabled: Boolean) {
+        if (isSoundEnabled) {
+            button.setImageResource(R.drawable.icon_sound_on)
+        } else {
+            button.setImageResource(R.drawable.icon_sound_off)
+        }
+    }
+
+    private fun updateVibrationButton(button: ImageButton, isVibrationEnabled: Boolean) {
+        if (isVibrationEnabled) {
+            button.setImageResource(R.drawable.icon_vibration_on)
+        } else {
+            button.setImageResource(R.drawable.icon_vibration_off)
         }
     }
 }

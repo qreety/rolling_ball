@@ -12,6 +12,7 @@
         <activity
             android:name=".MainMenu"
             android:exported="true"
+            android:screenOrientation="sensorLandscape"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +22,8 @@
         </activity>
         <activity
             android:name=".SurfaceViewActivity"
-            android:label="@string/title_activity_surface_view">
+            android:label="@string/title_activity_surface_view"
+            android:screenOrientation="sensorLandscape">
         </activity>
     </application>
 </manifest>

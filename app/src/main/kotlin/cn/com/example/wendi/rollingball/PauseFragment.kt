@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
 
@@ -25,9 +26,6 @@ class PauseFragment : DialogFragment() {
         }
     }
 
-    private val soundManager: SoundManager?
-        get() = (activity as? SurfaceViewActivity)?.soundManager
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,16 +37,26 @@ class PauseFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val soundManager = soundManager ?: return
+        val activity = activity ?: return
 
-        val button = view.findViewById<Button>(R.id.s_btn)
-        updateSoundButton(button, soundManager.isSoundEnabled())
+        val soundButton = view.findViewById<ImageButton>(R.id.s_btn)
+        updateSoundButton(soundButton, activity.isSoundEnabled())
         
-        button.setOnClickListener {
-            activity?.vibrateInGame(VibrationType.CLICK)
-            val newSoundState = !soundManager.isSoundEnabled()
-            soundManager.setSoundEnabled(newSoundState)
-            updateSoundButton(button, newSoundState)
+        soundButton.setOnClickListener {
+            activity.vibrateInGame(VibrationType.CLICK)
+            val newSoundState = !activity.isSoundEnabled()
+            activity.setSoundEnabled(newSoundState)
+            updateSoundButton(soundButton, newSoundState)
+        }
+
+        val vibrationButton = view.findViewById<ImageButton>(R.id.v_btn)
+        updateVibrationButton(vibrationButton, activity.isVibrationEnabled())
+        
+        vibrationButton.setOnClickListener {
+            activity.vibrateInGame(VibrationType.CLICK)
+            val newVibrationState = !activity.isVibrationEnabled()
+            activity.setVibrationEnabled(newVibrationState)
+            updateVibrationButton(vibrationButton, newVibrationState)
         }
 
         val button1 = view.findViewById<Button>(R.id.new_btn)
@@ -82,11 +90,19 @@ class PauseFragment : DialogFragment() {
         sendResult(CONTINUE)
     }
 
-    private fun updateSoundButton(button: Button, isSoundEnabled: Boolean) {
+    private fun updateSoundButton(button: ImageButton, isSoundEnabled: Boolean) {
         if (isSoundEnabled) {
-            button.setBackgroundResource(R.drawable.s_on)
+            button.setImageResource(R.drawable.icon_sound_on)
         } else {
-            button.setBackgroundResource(R.drawable.s_off)
+            button.setImageResource(R.drawable.icon_sound_off)
+        }
+    }
+
+    private fun updateVibrationButton(button: ImageButton, isVibrationEnabled: Boolean) {
+        if (isVibrationEnabled) {
+            button.setImageResource(R.drawable.icon_vibration_on)
+        } else {
+            button.setImageResource(R.drawable.icon_vibration_off)
         }
     }
 

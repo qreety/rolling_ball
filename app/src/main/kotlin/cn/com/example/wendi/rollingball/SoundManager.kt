@@ -1,20 +1,30 @@
 package cn.com.example.wendi.rollingball
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.media.AudioAttributes
 import android.media.SoundPool
 import androidx.core.content.edit
+
+private const val PREFS_NAME = "Scores"
+
+fun Context.isSoundEnabled(): Boolean {
+    val sharedPref = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    return sharedPref.getBoolean(getString(R.string.sound_enabled), true)
+}
+
+fun Context.setSoundEnabled(enabled: Boolean) {
+    val sharedPref = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    sharedPref.edit {
+        putBoolean(getString(R.string.sound_enabled), enabled)
+    }
+}
 
 class SoundManager(private val context: Context) {
 
     private var soundPool: SoundPool? = null
     private val soundMap = mutableMapOf<SoundType, Int>()
-    private var isSoundEnabled: Boolean = true
     private var isInitialized: Boolean = false
-
-    companion object {
-        private const val PREFS_NAME = "Scores"
-    }
 
     enum class SoundType {
         STAR,
@@ -23,9 +33,6 @@ class SoundManager(private val context: Context) {
 
     fun initialize() {
         if (isInitialized) return
-
-        val sharedPref = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        isSoundEnabled = sharedPref.getBoolean(context.getString(R.string.sound_enabled), true)
 
         val audioAttributes = AudioAttributes.Builder()
             .setUsage(AudioAttributes.USAGE_GAME)
@@ -44,21 +51,11 @@ class SoundManager(private val context: Context) {
     }
 
     fun playSound(type: SoundType, volume: Float = 1.0f) {
-        if (!isSoundEnabled || !isInitialized) return
+        if (!context.isSoundEnabled() || !isInitialized) return
 
         val soundId = soundMap[type] ?: return
         soundPool?.play(soundId, volume, volume, 1, 0, 1.0f)
     }
-
-    fun setSoundEnabled(enabled: Boolean) {
-        isSoundEnabled = enabled
-        val sharedPref = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        sharedPref.edit {
-            putBoolean(context.getString(R.string.sound_enabled), enabled)
-        }
-    }
-
-    fun isSoundEnabled(): Boolean = isSoundEnabled
 
     fun release() {
         soundPool?.release()
