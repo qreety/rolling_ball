@@ -2,7 +2,6 @@ package cn.com.example.wendi.rollingball
 
 import android.app.Dialog
 import android.content.Context
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -61,7 +60,6 @@ class FinalScoreFragment : DialogFragment() {
         }
 
         val tv1 = view.findViewById<TextView>(R.id.game_over)
-        val face = Typeface.createFromAsset(requireActivity().assets, "fonts/Chalkduster.ttf")
         
         if (isNewHighScore) {
             tv1.text = "HighScore!"
@@ -70,12 +68,10 @@ class FinalScoreFragment : DialogFragment() {
             tv1.text = "Game Over!"
             tv1.textSize = 36f
         }
-        tv1.typeface = face
 
         val tv3 = view.findViewById<TextView>(R.id.score)
         tv3.text = "Final Score: $score"
         tv3.textSize = 30f
-        tv3.typeface = face
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

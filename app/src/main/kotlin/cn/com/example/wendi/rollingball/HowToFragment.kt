@@ -1,7 +1,6 @@
 package cn.com.example.wendi.rollingball
 
 import android.content.Context
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -35,15 +34,12 @@ class HowToFragment : Fragment() {
         
         val tv = view.findViewById<TextView>(R.id.high_S)
         tv.text = highScore.toString()
-        val face = Typeface.createFromAsset(activity.assets, "fonts/Chalkduster.ttf")
-        tv.typeface = face
 
         val tut = view.findViewById<TextView>(R.id.ht)
         tut.text = "Tilt your phone.\n" +
                 "Eat stars to get score.\n" +
                 "Avoid bombs, or you lose.\n" +
                 "Have fun!"
-        tut.typeface = face
         tut.textSize = 28f
         tut.setLineSpacing(5f, 1.5f)
 

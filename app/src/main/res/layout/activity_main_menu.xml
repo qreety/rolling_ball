@@ -13,40 +13,40 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
-        android:theme="@style/AppTheme"
         android:background="@drawable/main_bg">
 
         <Button
+            android:id="@+id/new_game"
+            style="@style/GameButton.MainMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/new_game"
-            android:background="@drawable/new_btn"
-            android:enabled="true"
-            android:minHeight="48dp"
-            android:singleLine="true"
-            android:textStyle="bold"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="8dp"
-            android:nestedScrollingEnabled="false" />
+            android:enabled="true"
+            android:nestedScrollingEnabled="false"
+            android:singleLine="true"
+            android:text="@string/new_game" />
 
         <Button
+            android:id="@+id/ht_play"
+            style="@style/GameButton.MainMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/ht_play"
-            android:background="@drawable/how_btn"
             android:layout_below="@+id/new_game"
             android:layout_alignStart="@+id/new_game"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            android:text="@string/how_to_play" />
 
         <Button
+            android:id="@+id/opt"
+            style="@style/GameButton.MainMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/opt"
-            android:background="@drawable/opt_btn"
             android:layout_below="@+id/ht_play"
             android:layout_alignStart="@+id/ht_play"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            android:text="@string/options" />
 
         <TextView
             android:layout_width="wrap_content"

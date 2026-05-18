@@ -3,7 +3,6 @@ package cn.com.example.wendi.rollingball
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -40,8 +39,6 @@ class MainMenu : AppCompatActivity() {
         val highScore = sharedPref.getInt(getString(R.string.saved_high_score), 0).toLong()
         val tv = findViewById<TextView>(R.id.high_S)
         tv.text = highScore.toString()
-        val face = Typeface.createFromAsset(assets, "fonts/Chalkduster.ttf")
-        tv.typeface = face
 
         // Listen for fragment back stack changes to show/hide main menu
         supportFragmentManager.addOnBackStackChangedListener {

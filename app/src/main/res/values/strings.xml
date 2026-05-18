@@ -14,4 +14,14 @@
     <string name="title_activity_pause">Pause</string>
     <string name="sound">Sound</string>
     <string name="vibration">Vibration</string>
+
+    <!-- Button labels -->
+    <string name="new_game">New Game</string>
+    <string name="how_to_play">How to Play</string>
+    <string name="options">Options</string>
+    <string name="back">Back</string>
+    <string name="continue_btn">Continue</string>
+    <string name="restart">Restart</string>
+    <string name="end_game">End Game</string>
+    <string name="clear_score">Clear Score</string>
 </resources>

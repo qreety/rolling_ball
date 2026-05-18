@@ -2,6 +2,7 @@ package cn.com.example.wendi.rollingball
 
 import android.content.Context
 import android.graphics.*
+import androidx.core.content.res.ResourcesCompat
 
 class GameRenderer(private val context: Context) {
 
@@ -19,7 +20,7 @@ class GameRenderer(private val context: Context) {
 
         textPaint.textSize = 60f
         textPaint.color = Color.BLACK
-        val tf = Typeface.createFromAsset(context.assets, "fonts/Chalkduster.ttf")
+        val tf = ResourcesCompat.getFont(context, R.font.chalkduster)
         textPaint.typeface = tf
 
         gBall = BitmapFactory.decodeResource(context.resources, R.drawable.ball)

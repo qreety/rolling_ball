@@ -2,7 +2,6 @@ package cn.com.example.wendi.rollingball
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,8 +37,6 @@ class OptionFragment : Fragment() {
         
         val tv = view.findViewById<TextView>(R.id.high_S)
         tv.text = highScore.toString()
-        val face = Typeface.createFromAsset(activity.assets, "fonts/Chalkduster.ttf")
-        tv.typeface = face
 
         // Sound toggle button
         val soundButton = view.findViewById<ImageButton>(R.id.sound_btn)
@@ -74,7 +71,6 @@ class OptionFragment : Fragment() {
                 putInt(getString(R.string.saved_high_score), 0)
             }
             tv.text = "0"
-            tv.typeface = face
         }
     }
 
